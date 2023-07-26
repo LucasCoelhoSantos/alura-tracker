@@ -56,6 +56,7 @@ export default defineComponent({
 <style>
 .list {
   padding: 1.25rem;
+  height: 80vh;
 }
 
 main {
