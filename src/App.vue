@@ -4,48 +4,30 @@
       <SideBar @onChangeTheme="changeTheme"/>
     </div>
     <div class="column is-three-quarter content">
-      <TaskForm @onSaveTask="saveTask"/>
-      <div class="list">
-        <TaskItem v-for="(task, index) in tasks" :key="index" :task="task"/>
-        <TaskBox v-if="listEmpty">
-          You haven't done any tasks yet!
-        </TaskBox>
-      </div>
+      <NotificationItem />
+      <!-- RESPECTIVE VIEW -->
+      <router-view></router-view>
     </div>
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import SideBar from './components/SideBar.vue'
-import TaskForm from './components/TaskForm.vue'
-import TaskItem from './components/TaskItem.vue'
-import TaskBox from './components/TaskBox.vue'
-import ITask from '@/interface/ITask'
+import { defineComponent } from "vue";
+import SideBar from "./components/SideBar.vue";
+import NotificationItem from "./components/NotificationItem.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
     SideBar,
-    TaskForm,
-    TaskItem,
-    TaskBox,
+    NotificationItem,
   },
   data() {
     return {
-      tasks: [] as ITask[],
       darkModeOn: false,
     }
   },
-  computed: {
-    listEmpty () : boolean {
-      return this.tasks.length === 0
-    }
-  },
   methods: {
-    saveTask (task: ITask) {
-      this.tasks.push(task)
-    },
     changeTheme (darkModeOn: boolean) {
       this.darkModeOn =darkModeOn
     }
@@ -56,7 +38,6 @@ export default defineComponent({
 <style>
 .list {
   padding: 1.25rem;
-  height: 80vh;
 }
 
 main {
@@ -71,5 +52,6 @@ main.dark-mode {
 
 .content {
   background-color: var(--bg-primary);
+  height: 80vh;
 }
 </style>
