@@ -13,11 +13,11 @@ import TaskButton from './TaskButton.vue'
 
 export default defineComponent({
     name: 'TaskTimer',
-    emits: ['timerFinished'],
     components: {
         TaskStopwatch,
         TaskButton,
     },
+    emits: ['timerFinished'],
     data () {
         return {
             timeInSeconds: 0,

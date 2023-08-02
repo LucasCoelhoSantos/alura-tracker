@@ -1,35 +1,51 @@
 {
-    "projetos": [
-      {
-        "id": 1,
-        "nome": "Alura Tracker 3.0"
-      },
-      {
-        "id": 2,
-        "nome": "ByteBank 2.0"
-      }
-    ],
-    "tarefas": [
-      {
-        "id": 1,
-        "descricao": "Configuração do ambiente",
-        "projeto": {
-          "id": 1,
-          "nome": "Alura Tracker 3.0"
-        }
-      },
-      {
-        "descricao": "Refatoração do vuex 4",
-        "projeto": {
-          "id": 1,
-          "nome": "Alura Tracker 3.0"
-        },
-        "id": 2
-      }
-    ],
-	"usuario": {
-	    "id": 13,
-	    "nome": "Nathália Neves",
-	    "perfil": "Administração"
+  "projects": [
+    {
+      "id": 1,
+      "name": "Alura Tracker 3.0"
+    },
+    {
+      "id": 2,
+      "name": "ByteBank 2.0"
+    },
+    {
+      "id": 3,
+      "name": "Vue3"
+    },
+    {
+      "name": "<script></script>",
+      "id": 4
+    },
+    {
+      "name": "DELETE * FROM users;",
+      "id": 5
     }
-  }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "duration": 30,
+      "description": "Configuração do ambiente",
+      "project": {
+        "id": 1,
+        "name": "Alura Tracker 3.0"
+      }
+    },
+    {
+      "id": 2,
+      "duration": 60,
+      "description": "Refatoração do vuex 4",
+      "project": {
+        "id": 1,
+        "name": "Alura Tracker 3.0"
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": "Nathália Neves",
+      "role": "Administração",
+      "id": 1
+    }
+  ]
+}
