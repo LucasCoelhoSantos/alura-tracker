@@ -7,11 +7,24 @@
     {
       "id": 2,
       "name": "ByteBank 2.0"
+    },
+    {
+      "id": 3,
+      "name": "Vue3"
+    },
+    {
+      "name": "<script></script>",
+      "id": 4
+    },
+    {
+      "name": "DELETE * FROM users;",
+      "id": 5
     }
   ],
   "tasks": [
     {
       "id": 1,
+      "duration": 30,
       "description": "Configuração do ambiente",
       "project": {
         "id": 1,
@@ -20,6 +33,7 @@
     },
     {
       "id": 2,
+      "duration": 60,
       "description": "Refatoração do vuex 4",
       "project": {
         "id": 1,
@@ -27,11 +41,11 @@
       }
     }
   ],
-	"user": [
+  "users": [
     {
-      "id": 13,
       "name": "Nathália Neves",
-      "role": "Administração"
+      "role": "Administração",
+      "id": 1
     }
   ]
 }

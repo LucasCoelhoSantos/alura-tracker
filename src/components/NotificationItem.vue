@@ -19,6 +19,12 @@ import { NotificationType } from "@/interface/INotification";
 
 export default defineComponent({
     name: "NotificationItem",
+    setup () {
+        const store = useStore()
+        return {
+            notifications: computed(() => store.state.notifications),
+        }
+    },
     data () {
         return {
             context: {
@@ -26,12 +32,6 @@ export default defineComponent({
                 [NotificationType.WARNING]: 'is-warning',
                 [NotificationType.FAIL]: 'is-danger',
             },
-        }
-    },
-    setup () {
-        const store = useStore()
-        return {
-            notifications: computed(() => store.state.notifications),
         }
     },
 })

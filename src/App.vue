@@ -29,29 +29,36 @@ export default defineComponent({
   },
   methods: {
     changeTheme (darkModeOn: boolean) {
-      this.darkModeOn =darkModeOn
-    }
-  }
+      this.darkModeOn = darkModeOn
+    },
+  },
 });
 </script>
 
 <style>
 .list {
+  background-color: var(--bg-primary);
   padding: 1.25rem;
 }
 
 main {
-  --bg-primary: #ffffff;
+  --bg-primary: #dddddd;
   --text-primary: #000000;
+  --table-primary: #ffffff;
 }
 
 main.dark-mode {
   --bg-primary: #2b2b42;
-  --text-primary: #dddddd;
+  --text-primary: rgb(255, 150, 40);
+  /* --table-primary: #facbfe; */
 }
 
 .content {
   background-color: var(--bg-primary);
-  height: 80vh;
+  height: 100vh;
+}
+
+.table {
+  background-color: var(--table-primary);
 }
 </style>

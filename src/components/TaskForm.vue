@@ -34,51 +34,77 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue"
+import { computed, defineComponent, ref } from "vue"
 import TaskTimer from "./TaskTimer.vue"
 // import { useStore } from "vuex"
-import { key, useStore } from "@/store"
+import { useStore } from "@/store"
 import { NOTIFY } from "@/store/mutations-type"
 import { NotificationType } from "@/interface/INotification"
 
 export default defineComponent({
     name: "TaskForm",
-    emits: ["onSaveTask"],
     components: {
         TaskTimer,
     },
-    data() {
-        return {
-            description: "",
-            projectId: ""
-        }
-    },
-    methods: {
-        finishTask(elapsedTime: number) : void {
-            const project = this.store.state.projects.find(p => p.id == this.projectId)
+    emits: ["onSaveTask"],
+    setup (props, { emit }) {
+        const store = useStore()
+
+        const description = ref("")
+        const projectId = ref("")
+
+        const projects = computed(() => store.state.project.projects)
+
+        const finishTask = (elapsedTime: number) : void => {
+            const project = store.state.project.projects.find(p => p.id == projectId.value)
             if(!project) {
-                this.store.commit(NOTIFY, {
+                store.commit(NOTIFY, {
                     title: "Ops!",
                     text: "Select the project before finish the task!",
                     type: NotificationType.FAIL,
                 })
                 return
             }
-            this.$emit("onSaveTask", {
+            emit("onSaveTask", {
                 duration: elapsedTime,
-                description: this.description,
-                project: this.projects.find(proj => proj.id == this.projectId),
+                description: description.value,
+                project: projects.value.find(proj => proj.id == projectId.value),
             })
-            this.description = ""
+            description.value = ""
+        }
+
+        return {
+            projects,
+            description,
+            projectId,
+            finishTask,
         }
     },
-    setup () {
-        const store = useStore()
-        return {
-            projects: computed(() => store.state.projects),
-            store,
-        }
-    }
+    // data() {
+    //     return {
+    //         description: "",
+    //         projectId: ""
+    //     }
+    // },
+    // methods: {
+    //     finishTask(elapsedTime: number) : void {
+    //         const project = this.store.state.project.projects.find(p => p.id == this.projectId)
+    //         if(!project) {
+    //             this.store.commit(NOTIFY, {
+    //                 title: "Ops!",
+    //                 text: "Select the project before finish the task!",
+    //                 type: NotificationType.FAIL,
+    //             })
+    //             return
+    //         }
+    //         this.$emit("onSaveTask", {
+    //             duration: elapsedTime,
+    //             description: this.description,
+    //             project: this.projects.find(proj => proj.id == this.projectId),
+    //         })
+    //         this.description = ""
+    //     }
+    // },
 })
 </script>
 

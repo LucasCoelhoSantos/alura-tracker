@@ -6,7 +6,7 @@
             </span>
             <span>New Project</span>
         </router-link>
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth is-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -39,21 +39,28 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
-import { DESTROY_PROJECT } from "@/store/mutations-type";
+import { A_GET_PROJECTS, A_DELETE_PROJECT } from "@/store/actions-type";
 
 export default defineComponent({
     name: "ProjectsList",
-    methods: {
-        destroy (id: string) {
-            this.store.commit(DESTROY_PROJECT, id)
-        },
-    },
     setup () {
         const store = useStore()
+        store.dispatch(A_GET_PROJECTS)
         return {
-            projects: computed(() => store.state.projects),
+            projects: computed(() => store.state.project.projects),
             store
         }
     },
+    methods: {
+        destroy (id: string) {
+            this.store.dispatch(A_DELETE_PROJECT, id)
+        },
+    },
 })
 </script>
+
+<style scoped>
+section {
+    padding: 1.25rem;
+}
+</style>

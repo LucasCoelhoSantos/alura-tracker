@@ -12,7 +12,6 @@ import { defineComponent } from "vue";
   
 export default defineComponent({
     name: "TaskButton",
-    emits: ['clicked'],
     props: {
         disable: {
             type: Boolean
@@ -26,10 +25,11 @@ export default defineComponent({
             required: true
         },
     },
+    emits: ['clicked'],
     methods: {
         clicked () : void {
             this.$emit('clicked')
         }
-    }
+    },
 })
 </script>
